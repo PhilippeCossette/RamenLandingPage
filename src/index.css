@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -21,4 +22,10 @@
 
   /* Effects */
   --color-glow: 4 62% 42%;
+
+  --section-y-padding: 4rem;
+  --section-y-mobile-padding: 2rem;
+
+  --section-x-padding: 2rem;
+  --section-x-mobile-padding: 1rem;
 }

@@ -21,7 +21,7 @@ export default {
       },
 
       fontFamily: {
-        heading: ["Space Grotesk", "sans-serif"],
+        heading: ["Archivo Black", "sans-serif"],
         body: ["Inter", "sans-serif"],
       },
 
@@ -33,6 +33,13 @@ export default {
       borderRadius: {
         xl2: "18px",
         "2xl2": "28px",
+      },
+
+      padding: {
+        "section-y": "var(--section-y-padding)",
+        "section-y-mobile": "var(--section-y-mobile-padding)",
+        "section-x": "var(--section-x-padding)",
+        "section-x-mobile": "var(--section-x-mobile-padding)",
       },
 
       transitionTimingFunction: {
