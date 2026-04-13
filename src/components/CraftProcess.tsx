@@ -67,9 +67,14 @@ export default function CraftProcess() {
         className="sticky top-0 h-screen overflow-hidden mx-auto px-4 flex flex-col gap-6 justify-center"
       >
         <motion.header className="absolute w-full left-0 z-20 flex flex-col items-center gap-3">
-          <h2 className="text-4xl md:text-6xl font-heading uppercase font-bold text-white text-center">
-            <ScatterText>Our Craft Process</ScatterText>
+          <ScatterText className="hidden md:block text-4xl md:text-6xl font-heading uppercase font-bold text-white text-center">
+            Our Craft Process
+          </ScatterText>
+
+          <h2 className="md:hidden text-2xl font-heading uppercase font-bold text-white text-center">
+            Our Craft Process
           </h2>
+
           <p className="text-white font-semibold text-center">
             Crafted with patience, tradition, and precision.
           </p>

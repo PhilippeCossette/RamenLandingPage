@@ -20,7 +20,7 @@ export function NewHero() {
           transition={{ duration: 0.4, ease: "easeOut" }}
           style={{ lineHeight: "0.75" }}
           className="text-center translate-y-14 z-40 uppercase font-heading font-bold
-          text-[clamp(6rem,12vw,12rem)]"
+          text-[clamp(4rem,12vw,12rem)]"
         >
           Naruto <br /> Ramen
         </motion.h1>
@@ -42,7 +42,7 @@ export function NewHero() {
           {/* content */}
           <div className="relative z-20 flex flex-col justify-between items-center h-full p-[10%]">
             {/* buttons */}
-            <div className="flex gap-3 sm:gap-5">
+            <div className="flex gap-3 sm:gap-5 mt-5 md:mt-0">
               <Button
                 text="Order Now"
                 color="secondary"
@@ -62,12 +62,12 @@ export function NewHero() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
                 className="uppercase text-white font-heading
-              text-[clamp(2rem,4vw,4rem)]"
+              text-[clamp(1.5rem,4vw,4rem)]"
               >
                 Savory Ramen
               </motion.h2>
 
-              <div className="flex flex-wrap gap-2 sm:gap-5">
+              <div className="flex flex-wrap gap-2 sm:gap-5 justify-center">
                 {["Real Ingredients", "Authentic", "Delicious"].map(
                   (text, index) => (
                     <motion.p
@@ -76,7 +76,7 @@ export function NewHero() {
                       transition={{ delay: 0.2 + index * 0.1 }}
                       key={text}
                       className="text-white uppercase font-semibold
-                    text-[clamp(0.9rem,1.2vw,1.3rem)]"
+                    text-[clamp(0.7rem,1.2vw,1.3rem)]"
                     >
                       {text}
                     </motion.p>
