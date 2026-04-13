@@ -66,6 +66,7 @@ export default function Experience() {
   const { ref, isInView } = useSectionAnimation();
   return (
     <motion.section
+      id="experience"
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.95 }}
       ref={ref}

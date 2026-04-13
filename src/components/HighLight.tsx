@@ -1,7 +1,6 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Button } from "./Button";
 import { useSectionAnimation } from "../hooks/sectionAnimation";
-import { a, del } from "framer-motion/client";
 
 type HighLightCard = {
   id: number;
@@ -35,11 +34,12 @@ export default function HighLight() {
   const { ref, isInView } = useSectionAnimation();
   return (
     <motion.section
+      id="ramens"
       ref={ref}
       initial={{ opacity: 0.75, y: 20 }}
       animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="px-section-x-mobile md:px-section-x py-section-y-mobile md:py-section-y bg-primary"
+      className="overflow-hidden px-section-x-mobile md:px-section-x py-section-y-mobile md:py-section-y bg-primary"
     >
       <header className="flex flex-col uppercase items-center gap-2 mb-12">
         <motion.h2

@@ -9,7 +9,7 @@ export default function ScatterText({
 }) {
   const words = children?.toString().split(" ") ?? [];
   return (
-    <p className="flex gap-2">
+    <p className="flex flex-wrap gap-2">
       {words.map((word, index) => (
         <motion.span
           initial={{ opacity: 0, y: 20 }}

@@ -42,14 +42,7 @@ export function NewHero() {
           {/* content */}
           <div className="relative z-20 flex flex-col justify-between items-center h-full p-[10%]">
             {/* buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.2,
-              }}
-              className="flex gap-3 sm:gap-5"
-            >
+            <div className="flex gap-3 sm:gap-5">
               <Button
                 text="Order Now"
                 color="secondary"
@@ -60,7 +53,7 @@ export function NewHero() {
                 color="primary"
                 className="md:w-[200px]"
               />
-            </motion.div>
+            </div>
 
             {/* bottom text */}
             <div className="flex flex-col items-center">

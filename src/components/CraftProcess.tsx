@@ -1,5 +1,6 @@
 import { useTransform, motion, useScroll, useInView } from "framer-motion";
 import { useRef } from "react";
+import ScatterText from "./ScatterText";
 
 type CraftProcessType = {
   id: number;
@@ -51,6 +52,7 @@ export default function CraftProcess() {
 
   return (
     <motion.section
+      id="craft"
       initial={{ opacity: 0.75, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       ref={sectionRef}
@@ -66,7 +68,7 @@ export default function CraftProcess() {
       >
         <motion.header className="absolute w-full left-0 z-20 flex flex-col items-center gap-3">
           <h2 className="text-4xl md:text-6xl font-heading uppercase font-bold text-white text-center">
-            Our Craft Process
+            <ScatterText>Our Craft Process</ScatterText>
           </h2>
           <p className="text-white font-semibold text-center">
             Crafted with patience, tradition, and precision.
@@ -110,10 +112,15 @@ const CraftCard = ({
         }}
       />
       <div className="absolute rounded-md inset-0 bg-black/50" />
-      <footer className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 text-white">
+      <motion.footer
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 text-white"
+      >
         <h2 className="text-2xl font-bold text-center">{title}</h2>
         <p className="text-sm text-center">{description}</p>
-      </footer>
+      </motion.footer>
     </motion.div>
   );
 };

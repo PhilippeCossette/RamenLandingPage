@@ -13,6 +13,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { GiNoodles, GiCorn, GiGarlic, GiSesame } from "react-icons/gi";
 import { Button } from "./Button";
+import { useSectionAnimation } from "../hooks/sectionAnimation";
+import ScatterText from "./ScatterText";
 
 type Ramen = {
   id: number;
@@ -195,6 +197,7 @@ const categoryLabels = {
 };
 
 export default function PricingSection() {
+  const { ref, isInView } = useSectionAnimation();
   const [selectedRamen, setSelectedRamen] = useState<Ramen | null>(null);
   const [selectedAddOns, setSelectedAddOns] = useState<number[]>([]);
 
@@ -222,27 +225,47 @@ export default function PricingSection() {
   }, [selectedRamen, selectedAddOns]);
 
   return (
-    <section className="bg-primary px-section-x-mobile py-section-y-mobile md:px-section-x md:py-section-y">
-      <h2 className="font-heading uppercase text-6xl">
-        Build Your Perfect Bowl
+    <motion.section
+      id="menu"
+      ref={ref}
+      initial={{ opacity: 0.75, y: 20 }}
+      animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="overflow-hidden bg-primary px-section-x-mobile py-section-y-mobile md:px-section-x md:py-section-y"
+    >
+      <h2 className="font-heading uppercase text-2xl md:text-6xl">
+        <ScatterText>Build Your Perfect Bowl</ScatterText>
       </h2>
-      <p className="font-semibold text-lg mb-8">Crafted your way.</p>
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.4,
+        }}
+        viewport={{
+          margin: "200px",
+        }}
+        className="font-semibold text-lg mb-8"
+      >
+        Crafted your way.
+      </motion.p>
 
       {/* 🔥 MAIN GRID */}
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-10 items-start">
         {/* LEFT — RAMEN */}
         <div>
-          <h2 className="uppercase font-heading text-3xl mb-4">
+          <h2 className="uppercase font-heading text-xl md:text-3xl mb-4">
             Choose Your Base
           </h2>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-            {ramens.map((ramen) => (
+            {ramens.map((ramen, index) => (
               <RamenCard
                 key={ramen.id}
                 ramen={ramen}
                 selected={selectedRamen?.id === ramen.id}
                 onSelect={handleSelectRamen}
+                index={index}
               />
             ))}
           </div>
@@ -304,16 +327,23 @@ export default function PricingSection() {
       </div>
 
       {/* SUMMARY */}
-      {selectedRamen && (
-        <div className="mt-10">
-          <OrderSummary
-            selectedRamen={selectedRamen}
-            selectedAddOns={selectedAddOns}
-            totalPrice={totalPrice}
-          />
-        </div>
-      )}
-    </section>
+      <AnimatePresence>
+        {selectedRamen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="mt-10"
+          >
+            <OrderSummary
+              selectedRamen={selectedRamen}
+              selectedAddOns={selectedAddOns}
+              totalPrice={totalPrice}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.section>
   );
 }
 
@@ -321,13 +351,20 @@ function RamenCard({
   ramen,
   onSelect,
   selected,
+  index,
 }: {
   ramen: Ramen;
   onSelect: (ramen: Ramen) => void;
   selected: boolean;
+  index: number;
 }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ scale: 0.99 }}
+      whileTap={{ scale: 0.98 }}
       onClick={() => onSelect(ramen)}
       className={`
         overflow-hidden
@@ -385,7 +422,7 @@ function RamenCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -399,7 +436,9 @@ function AddOnCard({
   onSelect: (addOn: AddOn) => void;
 }) {
   return (
-    <div
+    <motion.div
+      whileHover={{ scale: 0.99 }}
+      whileTap={{ scale: 0.98 }}
       onClick={() => onSelect(addOn)}
       className={`border-2 px-4 py-2 rounded-md flex items-center justify-between gap-3 cursor-pointer transition-all duration-150 ${selected ? "border-blue-600 bg-blue-100" : "border-black bg-neutral-200"}`}
     >
@@ -408,7 +447,7 @@ function AddOnCard({
         <h3 className="text-sm font-bold">{addOn.name}</h3>
       </div>
       <div className="text-lg font-semibold">${addOn.price}</div>
-    </div>
+    </motion.div>
   );
 }
 

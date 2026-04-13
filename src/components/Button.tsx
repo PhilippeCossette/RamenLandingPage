@@ -49,6 +49,11 @@ export const Button = ({
 
   return (
     <motion.button
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{
+        margin: "100px",
+      }}
       style={{
         transformStyle: "preserve-3d",
         rotateX,
