@@ -87,7 +87,7 @@ const layer = {
 };
 
 const linkContainer = {
-  open: { opacity: 1, transition: { delay: 0.1, staggerChildren: 0.07 } },
+  open: { opacity: 1, transition: { delay: 0.6, staggerChildren: 0.07 } },
   closed: { opacity: 0, transition: { duration: 0.3 } },
 };
 
@@ -105,14 +105,21 @@ function MobileMenu({ onClick }: { onClick: () => void }) {
       exit="closed"
       variants={drawer}
     >
-      <motion.div variants={layer} className="absolute inset-0 bg-primary" />
       <motion.div variants={layer} className="absolute inset-0 bg-white" />
+      <motion.div variants={layer} className="absolute inset-0 bg-yellow-500" />
+      <motion.div variants={layer} className="absolute inset-0 bg-primary" />
       <motion.div
         variants={linkContainer}
         className="absolute inset-0 flex flex-col items-center justify-center gap-8 pt-16"
       >
         {links.map((link) => (
           <motion.a
+            whileHover={{
+              rotateZ: "5deg",
+              scale: 1.1,
+              color: "white",
+            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             onClick={onClick}
             key={link}
             href={`#${link.toLowerCase().replace(" ", "-")}`}
